@@ -3,7 +3,7 @@ import Header from './components/Header';
 import Siteroutes from './components/Siteroutes';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import CommonHeader from './components/CommonHeader';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from './reduxslices/authSlice';
@@ -24,17 +24,7 @@ function App()
     {
       dispatch(login(JSON.parse(sessionStorage.getItem("userdata"))));
     }
-  }, [])
-
-  useEffect(() =>
-  {
-    const cookieUser = usercokkie.get("staysignin");
-    if (cookieUser)
-    {
-      dispatch(login(cookieUser))
-      sessionStorage.setItem("userdata", JSON.stringify(cookieUser));
-    }
-  }, []);
+  }, [dispatch])
 
 
   return (

@@ -53,7 +53,7 @@ Organizations adopting autonomous agent frameworks today will set the benchmark 
 ---
 
 ### Social Proof Bar
-> *"PulseMetrics helped us identify a critical onboarding drop-off within 48 hours of installation, recovering \$180,000 in ARR."*
+> *"PulseMetrics helped us identify a critical onboarding drop-off within 48 hours of installation, recovering $180,000 in ARR."*
 > — **Sarah Jenkins**, VP of Growth at CloudScale`,
         },
         {
@@ -110,7 +110,7 @@ To mitigate failure, wrap fragile RPC calls in a stateful circuit breaker:
   ✅ 10-Year Manufacturer Warranty
   ✅ Free White-Glove Shipping
   
-  Fix your posture before today's workday ends. Click below to save \$100 during our Spring Refresh Sale!
+  Fix your posture before today's workday ends. Click below to save $100 during our Spring Refresh Sale!
 - **Headline:** Say Goodbye to 3 PM Back Pain.
 - **Link Description:** 30-Day Risk-Free Trial | Free Shipping
 - **CTA Button:** [Shop Now]`,
@@ -198,10 +198,10 @@ Lead Solutions Architect`,
 
 | Timestamp | Visual (Camera / Action) | Audio (Voice-over & SFX) |
 | :--- | :--- | :--- |
-| **0:00 - 0:05** | **HOOK:** Close-up of a smartphone screen. Notification: "Salary Credited: \$4,200". Protagonist smiles. Fast whip-pan to an empty fridge. | **VO:** "Payday feels amazing... for about 48 hours." *(SFX: Loud whoosh sound)* |
+| **0:00 - 0:05** | **HOOK:** Close-up of a smartphone screen. Notification: "Salary Credited: $4,200". Protagonist smiles. Fast whip-pan to an empty fridge. | **VO:** "Payday feels amazing... for about 48 hours." *(SFX: Loud whoosh sound)* |
 | **0:05 - 0:15** | Quick montage: Tap card for coffee, automated rent debit, forgotten subscription renewal popups. | **VO:** "Then rent hits, subscriptions renew, and you're left asking: where did it all actually go?" |
 | **0:15 - 0:30** | Protagonist pulls out phone, opens **FinWise**. Clean neon UI automatically categorizes expenses with instant visual graphs. | **VO:** "Meet FinWise. The smart money app that auto-tracks your spending habits before they drain your account." |
-| **0:30 - 0:45** | Split screen: FinWise sends proactive alert: "You're 15% under budget this month. \$350 transferred to High-Yield Savings." Protagonist breathes relief. | **VO:** "It doesn't just show where your money went. It grows what's left over." |
+| **0:30 - 0:45** | Split screen: FinWise sends proactive alert: "You're 15% under budget this month. $350 transferred to High-Yield Savings." Protagonist breathes relief. | **VO:** "It doesn't just show where your money went. It grows what's left over." |
 | **0:45 - 1:00** | Hero app shot with App Store & Google Play badges. End slate with offer. | **VO:** "Take control of your paycheck. Download FinWise today and get your first 3 months free." *(SFX: Satisfying cash chime)* |`,
         },
         {

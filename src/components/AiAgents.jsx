@@ -109,7 +109,7 @@ export default function AiAgents()
 
         try
         {
-            const response = await fetch("http://localhost:7000/api/ai-agent/generate", {
+            const response = await fetch(`${process.env.REACT_APP_APIURL}/api/ai-agent/generate`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -139,7 +139,7 @@ export default function AiAgents()
         } catch (err)
         {
             setOutput(
-                `⚠️ Connection error: Could not reach backend server at http://localhost:7000.\nEnsure your Express backend is running!\n\nAlternatively, you can click on the "Load Sample Output" buttons below to review the required outputs.`
+                `⚠️ Connection error: Could not reach backend server at ${process.env.REACT_APP_APIURL}.\nEnsure your Express backend is running!\n\nAlternatively, you can click on the "Load Sample Output" buttons below to review the required outputs.`
             );
         } finally
         {

@@ -31,7 +31,7 @@ exports.forgotpassword = async (req, res) =>
                     from: 'sameerwalia13@gmail.com', // transporter username email
                     to: req.query.un,             // user's email id
                     subject: 'Reset Password Mail from Nians',
-                    html: `Dear ${result.name}<br/><br/>Click on the Following Link to Reset your Password :-.<br/><br/><a href='http://localhost:3000/resetpassword?code=${passtoken}'>Reset Password<a/>`
+                    html: `Dear ${result.name}<br/><br/>Click on the Following Link to Reset your Password :-.<br/><br/><a href='${process.env.FRONTEND_URL}/resetpassword?code=${passtoken}'>Reset Password<a/>`
                 };
 
                 const mailresp = await sendMail(mailOptions);

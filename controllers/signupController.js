@@ -23,7 +23,7 @@ exports.signup = async (req, res) =>
                 from: 'sameerwalia13@gmail.com', // transporter username email
                 to: req.body.email,             // user's email id
                 subject: 'Activation Mail from Nains Website.com',
-                html: `Dear ${req.body.name}<br/><br/>Thanks for signing up on our website.<br/><br/>Click on the following link to activate your account.<br/><br/><a href='http://localhost:3000/activateaccount?code=${acttoken}'>Activate Account<a/>`
+                html: `Dear ${req.body.name}<br/><br/>Thanks for signing up on our website.<br/><br/>Click on the following link to activate your account.<br/><br/><a href='${process.env.FRONTEND_URL}/activateaccount?code=${acttoken}'>Activate Account<a/>`
             };
 
             const mailresp = await sendMail(mailOptions);
@@ -89,7 +89,7 @@ exports.resendmail = async (req, res) =>
                     from: 'sameerwalia13@gmail.com', // transporter username email
                     to: req.body.email,             // user's email id
                     subject: 'Activation Mail from Nians',
-                    html: `Dear ${user.name}<br/><br/>Thanks for signing up on our website.<br/><br/>Click on the following link to activate your account.<br/><br/><a href='http://localhost:3000/activateaccount?code=${user.token}'>Activate Account<a/>`
+                    html: `Dear ${user.name}<br/><br/>Thanks for signing up on our website.<br/><br/>Click on the following link to activate your account.<br/><br/><a href='${process.env.FRONTEND_URL}/activateaccount?code=${user.token}'>Activate Account<a/>`
                 };
 
                 const mailresp = await sendMail(mailOptions);

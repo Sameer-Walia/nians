@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 
+const strings = [
+  'DIGITAL MARKETING & TECHNOLOGY',
+  'CREATIVE DIGITAL EXPERIENCES',
+  'AI-POWERED BUSINESS SOLUTIONS',
+];
+
 function Typewriter()
 {
-
-  const strings = [
-    'DIGITAL MARKETING & TECHNOLOGY',
-    'CREATIVE DIGITAL EXPERIENCES',
-    'AI-POWERED BUSINESS SOLUTIONS',
-  ];
 
   const [currentStringIndex, setCurrentStringIndex] = useState(0);
   const [currentString, setCurrentString] = useState('');

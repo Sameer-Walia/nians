@@ -19,7 +19,6 @@ The enterprise landscape has shifted from passive conversational bots to proacti
 
 3. Measurable ROI Across Business Units
 | Department | Prior Workflow Bottleneck | Agent-Powered Acceleration |
-| :--- | :--- | :--- |
 | Engineering | Boilerplate & Unit Testing | 45% reduction in cycle time |
 | Marketing | Multi-channel Campaign Scaling | 3x content output with unified voice |
 | Support | Tier-1 Ticket Resolution | 60% deflection rate with zero escalation |
@@ -40,7 +39,6 @@ Organizations adopting autonomous agent frameworks today will set the benchmark 
 - Primary CTA: [Start Free 14-Day Trial]
 - Secondary CTA: [Watch 2-Min Interactive Demo]
 
----
 
  Section 2: The Three Pillars of Intelligent Analytics
 1. Behavioral Heatmaps without Speed Penalties
@@ -50,7 +48,6 @@ Organizations adopting autonomous agent frameworks today will set the benchmark 
 3. 1-Click Cohort Segmentation
    Filter users by behavioral triggers and automatically sync lists with your email sequences.
 
----
 
  Social Proof Bar
 "PulseMetrics helped us identify a critical onboarding drop-off within 48 hours of installation, recovering $180,000 in ARR."
@@ -70,10 +67,10 @@ Organizations adopting autonomous agent frameworks today will set the benchmark 
  3.1 The Fallacy of Network Reliability
 In distributed computing, assuming network stability is the primary cause of downtime. When Service A depends synchronously on Service B, latency cascades exponentially.
 
-\`\`\`
+
 [ Client ] ──> [ API Gateway ] ──> [ Auth Service ] (Latency: 20ms)
                                 └──> [ Order Service ] (Timeout: 5000ms ❌)
-\`\`\`
+
 
  3.2 The Circuit Breaker Pattern
 To mitigate failure, wrap fragile RPC calls in a stateful circuit breaker:
@@ -163,9 +160,8 @@ Read our open-source benchmark guide to see how your team stacks up. 👇
 Headline: The Real Cost of Slow CI/CD Pipelines
 CTA: [Download the Benchmark Report]
 
----
 
- Part B: Follow-up Nurture Email
+Part B: Follow-up Nurture Email
 Subject: Quick question about your current build times, {{firstName}}
 Preview: Cut 40 minutes off your daily deployment pipeline...
 
@@ -197,11 +193,15 @@ Target Audience: Millennials & Gen-Z young professionals
 Tone: Fast-paced, relatable, punchy
 
 | Timestamp | Visual (Camera / Action) | Audio (Voice-over & SFX) |
-| :--- | :--- | :--- |
+
 | 0:00 - 0:05 | HOOK: Close-up of a smartphone screen. Notification: "Salary Credited: $4,200". Protagonist smiles. Fast whip-pan to an empty fridge. | VO: "Payday feels amazing... for about 48 hours." (SFX: Loud whoosh sound) |
+
 | 0:05 - 0:15 | Quick montage: Tap card for coffee, automated rent debit, forgotten subscription renewal popups. | VO: "Then rent hits, subscriptions renew, and you're left asking: where did it all actually go?" |
+
 | 0:15 - 0:30 | Protagonist pulls out phone, opens FinWise. Clean neon UI automatically categorizes expenses with instant visual graphs. | VO: "Meet FinWise. The smart money app that auto-tracks your spending habits before they drain your account." |
+
 | 0:30 - 0:45 | Split screen: FinWise sends proactive alert: "You're 15% under budget this month. $350 transferred to High-Yield Savings." Protagonist breathes relief. | VO: "It doesn't just show where your money went. It grows what's left over." |
+
 | 0:45 - 1:00 | Hero app shot with App Store & Google Play badges. End slate with offer. | VO: "Take control of your paycheck. Download FinWise today and get your first 3 months free." (SFX: Satisfying cash chime) |`,
     },
     {

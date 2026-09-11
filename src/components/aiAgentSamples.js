@@ -4,7 +4,7 @@ export const SAMPLE_OUTPUTS = {
       title: "Sample 1: SEO Blog Post (Tech & AI)",
       taskType: "Generate Blogs",
       topic: "The Future of Autonomous AI Agents in Enterprise Software",
-      content: `# The Future of Autonomous AI Agents in Enterprise Software
+      content: `The Future of Autonomous AI Agents in Enterprise Software
 
 Meta Title: Autonomous AI Agents in 2026: The New Enterprise Standard
 Meta Description: Explore how autonomous AI agents powered by Claude and LLMs are revolutionizing enterprise workflows, code generation, and business automation.
@@ -31,7 +31,7 @@ Organizations adopting autonomous agent frameworks today will set the benchmark 
       title: "Sample 2: Website Landing Page Copy (SaaS)",
       taskType: "Website Content",
       topic: "PulseMetrics - Real-Time Customer Analytics Platform",
-      content: `# PulseMetrics Landing Page Copy
+      content: `PulseMetrics Landing Page Copy
 
  Hero Section
 - Badge: ⚡ Built for High-Growth Product Teams
@@ -53,14 +53,14 @@ Organizations adopting autonomous agent frameworks today will set the benchmark 
 ---
 
  Social Proof Bar
-> *"PulseMetrics helped us identify a critical onboarding drop-off within 48 hours of installation, recovering $180,000 in ARR."*
-> — Sarah Jenkins, VP of Growth at CloudScale`,
+"PulseMetrics helped us identify a critical onboarding drop-off within 48 hours of installation, recovering $180,000 in ARR."
+ — Sarah Jenkins, VP of Growth at CloudScale`,
     },
     {
       title: "Sample 3: Comprehensive E-Book Chapter",
       taskType: "E-Book Content",
       topic: "Chapter 3: Architecting Scalable Cloud Systems",
-      content: `# Chapter 3: Architecting Resilient Microservices in Distributed Environments
+      content: `Chapter 3: Architecting Resilient Microservices in Distributed Environments
 
  Learning Objectives
 - Understanding asynchronous event-driven architectures with Kafka and RabbitMQ.
@@ -92,7 +92,7 @@ To mitigate failure, wrap fragile RPC calls in a stateful circuit breaker:
       title: "Sample 1: High-Converting Facebook Ad Campaign",
       taskType: "Facebook Ads",
       topic: "ErgoFlow - Premium Ergonomic Office Chair",
-      content: `# Facebook Ad Campaign: ErgoFlow Active Chair
+      content: `Facebook Ad Campaign: ErgoFlow Active Chair
 
 Objective: Direct Purchase / E-commerce Conversions
 Framework: PAS (Problem - Agitate - Solution)
@@ -119,31 +119,31 @@ Framework: PAS (Problem - Agitate - Solution)
       title: "Sample 2: Multi-Headline Google Search Ads",
       taskType: "Google Ads",
       topic: "B2B Cybersecurity Penetration Testing Services",
-      content: `# Google Responsive Search Ad (RSA) Copy
+      content: `Google Responsive Search Ad (RSA) Copy
 
 Target Keyword Theme: "enterprise penetration testing services", "hire ethical hackers"
 
  Headlines (Max 30 Characters Each)
-1. Enterprise Penetration Testing  *(29 chars)*
-2. Identify Flaws Before Hackers *(30 chars)*
-3. SOC-2 & ISO 27001 Certified   *(26 chars)*
-4. Fast 72-Hour Security Audits  *(28 chars)*
-5. Comprehensive Vulnerability Scan *(30 chars)*
+1. Enterprise Penetration Testing  (29 chars)
+2. Identify Flaws Before Hackers (30 chars)
+3. SOC-2 & ISO 27001 Certified   (26 chars)
+4. Fast 72-Hour Security Audits  (28 chars)
+5. Comprehensive Vulnerability Scan (30 chars)
 
  Descriptions (Max 90 Characters Each)
-1. Protect your cloud infrastructure and customer data with CREST-accredited pen testers. *(89 chars)*
-2. Uncover zero-day vulnerabilities before attackers exploit them. Request an audit quote. *(88 chars)*
-3. Full scope pentest reports delivered with executive summaries and remediation scripts. *(88 chars)*
+1. Protect your cloud infrastructure and customer data with CREST-accredited pen testers. (89 chars)
+2. Uncover zero-day vulnerabilities before attackers exploit them. Request an audit quote. (88 chars)
+3. Full scope pentest reports delivered with executive summaries and remediation scripts. (88 chars)
 
  Ad Extensions / Sitelinks
-- Sitelink 1: View Sample Security Report -> *See our methodology in action.*
-- Sitelink 2: Compliance Testing (HIPAA, PCI) -> *Pass your compliance audits first try.*`,
+- Sitelink 1: View Sample Security Report -> See our methodology in action.
+- Sitelink 2: Compliance Testing (HIPAA, PCI) -> Pass your compliance audits first try.`,
     },
     {
       title: "Sample 3: B2B LinkedIn Thought-Leadership Ad & Email Copy",
       taskType: "LinkedIn Ads & Email Copy",
       topic: "DevOps Automated CI/CD Pipeline Optimizer",
-      content: `# LinkedIn Thought-Leadership Sponsored Post & Follow-up Email
+      content: `LinkedIn Thought-Leadership Sponsored Post & Follow-up Email
 
  Part A: LinkedIn Sponsored Content
 Audience: VPs of Engineering, CTOs, Lead DevOps Engineers
@@ -191,24 +191,24 @@ Lead Solutions Architect`,
       title: "Sample 1: 60-Second Commercial Video Script",
       taskType: "Video Scripts",
       topic: "FinWise - Smart Personal Finance & Budgeting App",
-      content: `# 60-Second Commercial Script: "The Payday Mystery"
+      content: `60-Second Commercial Script: "The Payday Mystery"
 
 Target Audience: Millennials & Gen-Z young professionals
 Tone: Fast-paced, relatable, punchy
 
 | Timestamp | Visual (Camera / Action) | Audio (Voice-over & SFX) |
 | :--- | :--- | :--- |
-| 0:00 - 0:05 | HOOK: Close-up of a smartphone screen. Notification: "Salary Credited: $4,200". Protagonist smiles. Fast whip-pan to an empty fridge. | VO: "Payday feels amazing... for about 48 hours." *(SFX: Loud whoosh sound)* |
+| 0:00 - 0:05 | HOOK: Close-up of a smartphone screen. Notification: "Salary Credited: $4,200". Protagonist smiles. Fast whip-pan to an empty fridge. | VO: "Payday feels amazing... for about 48 hours." (SFX: Loud whoosh sound) |
 | 0:05 - 0:15 | Quick montage: Tap card for coffee, automated rent debit, forgotten subscription renewal popups. | VO: "Then rent hits, subscriptions renew, and you're left asking: where did it all actually go?" |
 | 0:15 - 0:30 | Protagonist pulls out phone, opens FinWise. Clean neon UI automatically categorizes expenses with instant visual graphs. | VO: "Meet FinWise. The smart money app that auto-tracks your spending habits before they drain your account." |
 | 0:30 - 0:45 | Split screen: FinWise sends proactive alert: "You're 15% under budget this month. $350 transferred to High-Yield Savings." Protagonist breathes relief. | VO: "It doesn't just show where your money went. It grows what's left over." |
-| 0:45 - 1:00 | Hero app shot with App Store & Google Play badges. End slate with offer. | VO: "Take control of your paycheck. Download FinWise today and get your first 3 months free." *(SFX: Satisfying cash chime)* |`,
+| 0:45 - 1:00 | Hero app shot with App Store & Google Play badges. End slate with offer. | VO: "Take control of your paycheck. Download FinWise today and get your first 3 months free." (SFX: Satisfying cash chime) |`,
     },
     {
       title: "Sample 2: Production Storyboard & Camera Shot List",
       taskType: "Storyboards & Shot Lists",
       topic: "AuraSound - Noise-Cancelling Wireless Headphones",
-      content: `# Production Storyboard & Technical Shot List
+      content: `Production Storyboard & Technical Shot List
 
 Production Title: "Enter The Silence"
 Director: Video Production Agent
@@ -235,7 +235,7 @@ Camera Package: Sony FX6 / 35mm & 50mm Anamorphic Lenses
       title: "Sample 3: Viral 30s TikTok / Reels Social Media Video Script",
       taskType: "Social Media Video Content",
       topic: "5 Hidden VS Code Extensions Every Developer Needs in 2026",
-      content: `# Viral TikTok / Instagram Reels Script
+      content: `Viral TikTok / Instagram Reels Script
 
 Format: 9:16 Vertical Video  
 Target Duration: 32 Seconds  
@@ -247,14 +247,14 @@ Audio Track: Trending high-bpm lo-fi electronic beat
 
  Body (0:03 - 0:24)
 - Extension 1 (0:03 - 0:10):
-  - *On-Screen:* Screen capture showing auto-documentation generation in 1 click.
-  - *VO:* "Number 1: 'DocuCraft'. Highlight any messy function, press Cmd+Shift+D, and it writes perfect JSDoc comments instantly."
+  - On-Screen: Screen capture showing auto-documentation generation in 1 click.
+  - VO: "Number 1: 'DocuCraft'. Highlight any messy function, press Cmd+Shift+D, and it writes perfect JSDoc comments instantly."
 - Extension 2 (0:10 - 0:17):
-  - *On-Screen:* Rainbow color-coded indentation and bracket lines highlighting a missing bracket bug.
-  - *VO:* "Number 2: 'IndentSense 2'. Never get lost in bracket hell again—it highlights nested scopes automatically."
+  - On-Screen: Rainbow color-coded indentation and bracket lines highlighting a missing bracket bug.
+  - VO: "Number 2: 'IndentSense 2'. Never get lost in bracket hell again—it highlights nested scopes automatically."
 - Extension 3 (0:17 - 0:24):
-  - *On-Screen:* Terminal inside VS Code highlighting git commit history with inline blame avatars.
-  - *VO:* "Number 3: 'GitLens Pro'. See exactly who broke line 42 without leaving your editor."
+  - On-Screen: Terminal inside VS Code highlighting git commit history with inline blame avatars.
+  - VO: "Number 3: 'GitLens Pro'. See exactly who broke line 42 without leaving your editor."
 
  Call to Action (0:24 - 0:32)
 - Visual: Host smiles, points down to the comment section.

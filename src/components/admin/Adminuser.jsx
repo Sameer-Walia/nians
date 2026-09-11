@@ -138,7 +138,7 @@ function Adminuser()
                                     </table>
                                 </div>
                             </div>
-                        </> : <div class="no-user-message">No User Found</div>
+                        </> : null
                 }
             </div>
         </div>

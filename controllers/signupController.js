@@ -155,15 +155,15 @@ exports.login = async (req, res) =>
 
                 res.cookie("authToken", jsontoken, {   // authtoken is name of cookie and jsontoken is its value
                     httpOnly: true,
-                    secure: false,    // when we launch the site , make is true
-                    sameSite: "lax",   // strict , lax , none 
+                    secure: true,    // when we launch the site , make is true
+                    sameSite: "none",   // strict , lax , none 
                     maxAge: 15 * 60 * 1000,   // expiry time , time should be in milliseconds , 15 min
                 });
 
                 res.cookie("refreshToken", refreshjsontoken, {   // authtoken is name of cookie and jsontoken is its value
                     httpOnly: true,
-                    secure: false,    // when we launch the site , make is true
-                    sameSite: "lax",   // strict , lax , none 
+                    secure: true,    // when we launch the site , make is true
+                    sameSite: "none",   // strict , lax , none 
                     maxAge: 7 * 24 * 60 * 60 * 1000,   // expiry time , time should be in milliseconds , 7 days
                 });
 

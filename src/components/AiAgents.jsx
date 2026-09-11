@@ -170,6 +170,7 @@ export default function AiAgents()
     return (
         <div className="ai-agent-container">
             {/* Header */}
+
             <header className="ai-agent-header">
                 <div className="badge-pill">Powered by Claude LLM</div>
                 <h1>Multi-Agent AI Studio</h1>

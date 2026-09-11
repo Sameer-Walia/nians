@@ -4,8 +4,82 @@ const anthropic = process.env.ANTHROPIC_API_KEY
     ? new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY })
     : null;
 
-// Dynamic simulation for any topic when Claude credits are $0
-function generateAgentResponse(agentType, taskType, topic, tone, targetAudience, extraNotes)
+// Current, non-deprecated Claude model. claude-3-haiku-20240307 is being retired
+// by Anthropic, which is why the old controller kept silently falling back.
+const CLAUDE_MODEL = "claude-haiku-4-5-20251001";
+
+// ---------------------------------------------------------------------------
+// Distinct persona + workflow per agent (assignment requirement: "separate
+// prompts and workflows for each agent"). Each function builds a full system
+// prompt tailored to the agent's job, the specific deliverable requested,
+// and the user's tone / audience / extra instructions.
+// ---------------------------------------------------------------------------
+
+function buildSystemPrompt(agentType, taskType, tone, audience, extraNotes)
+{
+    const commonFooter = `
+Tone of voice: ${tone || "Professional & Engaging"}.
+Target audience: ${audience || "general industry professionals and customers"}.
+${extraNotes ? `Additional instructions from the user: ${extraNotes}` : ""}
+Format the output in clean Markdown (headings, bullet points, tables where useful).`;
+
+    if (agentType === "content_writing")
+    {
+        return `You are the Content Writing Agent, a specialist AI content strategist and SEO copywriter.
+Your job is to produce long-form, publish-ready written content: blog posts, website copy, e-book
+chapters, and SEO-optimized articles.
+
+Workflow you must silently follow before writing:
+1. Identify search intent and the audience's core pain point for the topic.
+2. Plan a logical outline with a clear H1 and H2/H3 semantic hierarchy.
+3. Draft long-form content that naturally integrates the topic as a keyword.
+4. End with a short, concrete takeaway or action section.
+
+Deliverable requested: "${taskType}".
+${commonFooter}`;
+    }
+
+    if (agentType === "copywriting_ads")
+    {
+        return `You are the Copywriting & Ads Agent, an elite direct-response copywriter specializing in
+paid ads, product descriptions, email copy, and CTAs.
+
+Workflow you must silently follow before writing:
+1. Extract the core customer pain point and the unique selling proposition (USP) from the topic.
+2. Apply a direct-response framework (AIDA, PAS, or Before-After-Bridge) explicitly.
+3. Write a punchy hook/headline within realistic character limits for the platform.
+4. Always end with one or more clear, varied calls-to-action (CTA).
+
+Deliverable requested: "${taskType}". If the deliverable is a specific ad platform (Facebook, Google,
+LinkedIn) respect that platform's real format conventions (headline/body/CTA structure, character
+limits). If it's "CTA Variations", return at least 5 distinct CTA lines.
+${commonFooter}`;
+    }
+
+    // video_production
+    return `You are the Video Production Agent, a professional video scriptwriter and creative director.
+Your job is to produce production-ready video scripts, storyboards, shot lists, voice-over scripts,
+and short-form social video content.
+
+Workflow you must silently follow before writing:
+1. Open with a 3-second hook designed to stop the scroll.
+2. Write a dual-track script: a Visual/Camera-direction column and an Audio/VO/SFX column, tied to
+   timestamps.
+3. Specify shot types, camera movement, and pacing.
+4. Close with production notes (lighting, pacing, sound design) and a clear on-screen CTA.
+
+Deliverable requested: "${taskType}". Present the script as a Markdown table with columns:
+Time | Visual / Camera Direction | Audio / Voice-over / SFX.
+${commonFooter}`;
+}
+
+// ---------------------------------------------------------------------------
+// Offline fallback generator — used ONLY if the live Claude call fails
+// (e.g. no network, invalid/expired key, rate limit, no credits). It is
+// clearly labeled in the response so nobody mistakes it for a live Claude
+// answer.
+// ---------------------------------------------------------------------------
+function generateFallbackResponse(agentType, taskType, topic, tone, targetAudience, extraNotes)
 {
     const cleanTopic = topic.trim();
     const audience = targetAudience?.trim() || "Industry Professionals & Customers";
@@ -13,95 +87,51 @@ function generateAgentResponse(agentType, taskType, topic, tone, targetAudience,
 
     if (agentType === "content_writing")
     {
-        return `# ${cleanTopic}: The Definitive Industry Guide
+        return `${cleanTopic}: Industry Guide (Offline Fallback)
 
-**Meta Title:** ${cleanTopic} - Complete Overview & Best Practices (2026)
-**Meta Description:** Discover in-depth strategies, proven frameworks, and actionable insights about ${cleanTopic} tailored for ${audience}.
-**Target Audience:** ${audience} | **Tone:** ${selectedTone}
+Deliverable: ${taskType}
+Target Audience: ${audience} | Tone: ${selectedTone}
 
----
+⚠️ This is a locally generated fallback because the live Claude API call failed.
+See the "source" field in the response for the exact error.
 
-## 1. Executive Summary: Why ${cleanTopic} Matters Now
-In today's fast-evolving landscape, understanding **${cleanTopic}** is no longer optional—it is a competitive necessity. Organizations and professionals who master this achieve significant operational acceleration and sustained engagement.
+1. Why ${cleanTopic} Matters
+A concise framing of why ${cleanTopic} matters to ${audience} right now.
 
-## 2. Core Strategic Pillars
-- **Precision Targeting:** Aligning key initiatives directly with the needs of ${audience}.
-- **Scalable Execution:** Eliminating manual bottlenecks through structured, reusable frameworks.
-- **Measurable Impact:** Tracking continuous ROI and conversion milestones over time.
+2. Key Points
+- Core benefit 1 relevant to ${cleanTopic}
+- Core benefit 2 relevant to ${audience}
+- A measurable outcome or proof point
 
-## 3. Step-by-Step Implementation Roadmap
-1. **Assessment Phase:** Audit existing workflows related to ${cleanTopic}.
-2. **Strategy Formulation:** Apply direct ${selectedTone.toLowerCase()} messaging to communicate core value.
-3. **Rollout & Optimization:** Iterate continuously based on real-world feedback and data analytics.
-
-## 4. Key Takeaways & Action Items
-- Focus on delivering authentic value to ${audience}.
-- Maintain consistent voice and strategic alignment across all touchpoints.
-${extraNotes ? `\n> **Special Guideline Applied:** ${extraNotes}` : ""}`;
+3. Next Steps
+Practical next steps for ${audience} to act on ${cleanTopic}.
+${extraNotes ? `\n Note: ${extraNotes}` : ""}`;
     }
 
     if (agentType === "copywriting_ads")
     {
-        return `# High-Converting Copywriting Suite: ${cleanTopic}
+        return `${taskType} — ${cleanTopic} (Offline Fallback)
 
-**Deliverable:** ${taskType.toUpperCase()}
-**Framework Applied:** PAS (Problem - Agitate - Solution) & AIDA
-**Target Audience:** ${audience} | **Tone:** ${selectedTone}
+⚠️ Live Claude call failed — showing a locally generated placeholder.
 
----
+Headline: Discover a Better Way to Handle ${cleanTopic}
+Body: Built for ${audience}, designed to solve real problems fast.
+CTA: Get Started Today
 
-### 🔥 Ad Variation 1: Direct-Response Angle
-- **Headline (Hook):** The Secret to Mastering ${cleanTopic} in 2026.
-- **Primary Text:**
-  Struggling to get real results with ${cleanTopic}? You're not alone.
-  
-  Most ${audience} waste countless hours battling ineffective methods. That's why we engineered a smarter, faster way forward.
-  
-  ✅ Proven, field-tested architecture  
-  ✅ Designed specifically for ${audience}  
-  ✅ 100% satisfaction guaranteed  
-
-  Stop settling for average. Take your results to the next level today.
-- **Call to Action (CTA):** [Learn More / Claim Your Access]
-
----
-
-### 🚀 Ad Variation 2: High-Urgency Angle
-- **Headline:** Ready to Transform Your Approach to ${cleanTopic}?
-- **Primary Text:**
-  What if you could solve your biggest bottlenecks with ${cleanTopic} in just 48 hours?
-  
-  See how forward-thinking leaders are unlocking breakthrough performance with our modern playbook.
-- **Call to Action (CTA):** [Get Started Now]
-
-${extraNotes ? `\n> **Notes:** ${extraNotes}` : ""}`;
+${extraNotes ? `\n Note: ${extraNotes}` : ""}`;
     }
 
-    // Video Production Agent
-    return `# Production Video Blueprint: ${cleanTopic}
+    return `${taskType} — ${cleanTopic} (Offline Fallback)
 
-**Deliverable:** ${taskType.toUpperCase()}
-**Runtime Target:** 60 Seconds
-**Target Platform:** YouTube / Reels / Commercial
-**Audience:** ${audience} | **Tone:** ${selectedTone}
+⚠️ Live Claude call failed — showing a locally generated placeholder.
 
----
-
-### Dual-Track Audio & Visual Script
-
-| Time | Visual / Camera Direction | Audio / Voice-over / SFX |
+| Time | Visual | Audio/VO |
 | :--- | :--- | :--- |
-| **0:00 - 0:05** | **HOOK:** Dynamic macro shot of subject facing a major challenge with ${cleanTopic}. Fast push-in camera movement. | **VO (Energetic):** "If you think ${cleanTopic} is complicated, you've been doing it all wrong." *(SFX: Sharp transition whoosh)* |
-| **0:05 - 0:20** | Split-screen contrasting old manual methods vs modern, seamless execution. | **VO:** "Traditional approaches waste your time and budget. There's a much better way." |
-| **0:20 - 0:40** | Clean, minimalist showcase displaying key features and benefits in action. | **VO:** "Engineered specifically for ${audience}, this changes the game by delivering instant clarity and results." |
-| **0:40 - 0:60** | Hero shot of the product/brand with bold on-screen CTA badge and contact URL. | **VO:** "Don't wait. Experience ${cleanTopic} like never before. Link in bio to start today!" *(SFX: Modern closing chime)* |
-
----
-
-### Director & Production Notes:
-- **Pacing:** Fast-paced, cutting every 2.5 - 3 seconds to ensure 90%+ audience retention.
-- **Lighting:** Modern cool-toned aesthetic with accent rim lights.
-${extraNotes ? `- **Special Director Note:** ${extraNotes}` : ""}`;
+| 0:00-0:05 | Hook shot introducing ${cleanTopic} | "This changes everything." |
+| 0:05-0:20 | Problem/solution contrast | Explains the pain point for ${audience} |
+| 0:20-0:40 | Product/benefit showcase | Key benefits called out |
+| 0:40-0:60 | CTA card | "Learn more — link in bio." |
+${extraNotes ? `\n Note: ${extraNotes}` : ""}`;
 }
 
 exports.generateAgentContent = async (req, res) =>
@@ -110,52 +140,70 @@ exports.generateAgentContent = async (req, res) =>
     {
         const { agentType, taskType, topic, tone, targetAudience, extraNotes } = req.body;
 
+        if (!agentType || !taskType)
+        {
+            return res.status(400).json({ success: false, message: "agentType and taskType are required" });
+        }
+
         if (!topic || !topic.trim())
         {
             return res.status(400).json({ success: false, message: "Topic is required" });
         }
 
-        // Try Claude API if client is available
-        if (anthropic)
+        if (!anthropic)
         {
-            try
-            {
-                const response = await anthropic.messages.create({
-                    model: "claude-3-haiku-20240307",
-                    max_tokens: 2500,
-                    messages: [{ role: "user", content: `Generate a ${taskType} for ${topic}` }],
-                });
-
-                return res.status(200).json({
-                    success: true,
-                    agent: agentType,
-                    taskType,
-                    source: "CLAUDE_3_HAIKU (Live API)",
-                    output: response.content[0]?.text || "No content returned.",
-                });
-            } catch (apiError)
-            {
-                console.log("Anthropic Credit Balance $0 -> Auto-switching to Smart Agent Generator.");
-            }
+            const generatedContent = generateFallbackResponse(agentType, taskType, topic, tone, targetAudience, extraNotes);
+            return res.status(200).json({
+                success: true,
+                agent: agentType,
+                taskType,
+                source: "FALLBACK_TEMPLATE (No ANTHROPIC_API_KEY set on the server)",
+                output: generatedContent,
+            });
         }
 
-        // Graceful smart generator: Generates customized content for ANY topic entered!
-        const generatedContent = generateAgentResponse(
-            agentType,
-            taskType,
-            topic,
-            tone,
-            targetAudience,
-            extraNotes
-        );
+        const systemPrompt = buildSystemPrompt(agentType, taskType, tone, targetAudience, extraNotes);
 
-        return res.status(200).json({
-            success: true,
-            agent: agentType,
-            taskType,
-            source: "CLAUDE_AGENT_ENGINE (Active)",
-            output: generatedContent,
-        });
+        try
+        {
+            const response = await anthropic.messages.create({
+                model: CLAUDE_MODEL,
+                max_tokens: 2500,
+                system: systemPrompt,
+                messages: [
+                    {
+                        role: "user",
+                        content: `Create the "${taskType}" deliverable about: ${topic.trim()}`,
+                    },
+                ],
+            });
+
+            const textBlock = response.content.find((block) => block.type === "text");
+
+            return res.status(200).json({
+                success: true,
+                agent: agentType,
+                taskType,
+                source: `CLAUDE_LIVE (${CLAUDE_MODEL})`,
+                output: textBlock?.text || "Claude returned no text content.",
+            });
+        } catch (apiError)
+        {
+            // Surface the REAL reason so it's obvious why you're seeing fallback
+            // content instead of live Claude output (bad key, no credits, rate
+            // limit, deprecated model, network issue, etc).
+            console.error("Anthropic API call failed:", apiError?.message || apiError);
+
+            const generatedContent = generateFallbackResponse(agentType, taskType, topic, tone, targetAudience, extraNotes);
+
+            return res.status(200).json({
+                success: true,
+                agent: agentType,
+                taskType,
+                source: `FALLBACK_TEMPLATE (Claude API error: ${apiError?.message || "unknown error"})`,
+                output: generatedContent,
+            });
+        }
     } catch (error)
     {
         console.error("General Error:", error);

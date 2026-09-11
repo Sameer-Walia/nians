@@ -19,8 +19,8 @@ app.use(cookieParser());
 
 const mongoose = require('mongoose');
 const { type } = require('os');
-// mongoose.connect(process.env.MONGO_URL).then(() => console.log("Connected to MongoDB on port " + port));
-mongoose.connect('mongodb+srv://sameer:123@cluster0.e6krwcg.mongodb.net/nians?retryWrites=true&w=majority&appName=Cluster0').then(() => console.log('Connected to MongoDB'));
+mongoose.connect(process.env.MONGO_URL).then(() => console.log("Connected to MongoDB on port " + port));
+// mongoose.connect('mongodb+srv://sameer:123@cluster0.e6krwcg.mongodb.net/nians?retryWrites=true&w=majority&appName=Cluster0').then(() => console.log('Connected to MongoDB'));
 
 
 const signupRoutes = require('./routes/signupRoutes');

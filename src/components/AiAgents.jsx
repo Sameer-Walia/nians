@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./AiAgents.css";
 import { SAMPLE_OUTPUTS } from "./aiAgentSamples";
 
@@ -67,6 +67,12 @@ const AGENTS = [
 
 export default function AiAgents()
 {
+
+    useEffect(() =>
+    {
+        document.title = "AI-Agent";
+    }, []);
+
     const [activeAgentId, setActiveAgentId] = useState("content_writing");
     const activeAgent = AGENTS.find((a) => a.id === activeAgentId);
 

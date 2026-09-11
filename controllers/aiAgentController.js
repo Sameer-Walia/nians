@@ -4,9 +4,7 @@ const anthropic = process.env.ANTHROPIC_API_KEY
     ? new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY })
     : null;
 
-
 const CLAUDE_MODEL = "claude-haiku-4-5-20251001";
-
 
 function buildSystemPrompt(agentType, taskType, tone, audience, extraNotes)
 {

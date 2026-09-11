@@ -4,16 +4,9 @@ const anthropic = process.env.ANTHROPIC_API_KEY
     ? new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY })
     : null;
 
-// Current, non-deprecated Claude model. claude-3-haiku-20240307 is being retired
-// by Anthropic, which is why the old controller kept silently falling back.
+
 const CLAUDE_MODEL = "claude-haiku-4-5-20251001";
 
-// ---------------------------------------------------------------------------
-// Distinct persona + workflow per agent (assignment requirement: "separate
-// prompts and workflows for each agent"). Each function builds a full system
-// prompt tailored to the agent's job, the specific deliverable requested,
-// and the user's tone / audience / extra instructions.
-// ---------------------------------------------------------------------------
 
 function buildSystemPrompt(agentType, taskType, tone, audience, extraNotes)
 {
@@ -73,12 +66,7 @@ Time | Visual / Camera Direction | Audio / Voice-over / SFX.
 ${commonFooter}`;
 }
 
-// ---------------------------------------------------------------------------
-// Offline fallback generator — used ONLY if the live Claude call fails
-// (e.g. no network, invalid/expired key, rate limit, no credits). It is
-// clearly labeled in the response so nobody mistakes it for a live Claude
-// answer.
-// ---------------------------------------------------------------------------
+
 function generateFallbackResponse(agentType, taskType, topic, tone, targetAudience, extraNotes)
 {
     const cleanTopic = topic.trim();
@@ -189,9 +177,7 @@ exports.generateAgentContent = async (req, res) =>
             });
         } catch (apiError)
         {
-            // Surface the REAL reason so it's obvious why you're seeing fallback
-            // content instead of live Claude output (bad key, no credits, rate
-            // limit, deprecated model, network issue, etc).
+
             console.error("Anthropic API call failed:", apiError?.message || apiError);
 
             const generatedContent = generateFallbackResponse(agentType, taskType, topic, tone, targetAudience, extraNotes);
